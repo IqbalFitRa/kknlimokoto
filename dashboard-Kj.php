@@ -31,8 +31,22 @@ if (!$koneksi) {
     <div class="mx-auto">
             <div class="card">
                 <div class="card-header">
-                    Form Surat Rekomendasi
+                    List Permintaan Rekomendasi
                 </div>
                 <div class="card-body">
+                    <table class="table">
+                        <thread>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Tempat Lahir</th>
+                            <th scope="col">Tanggal Lahir</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Agama</th>
+                            <th scope="col">Pekerjaan</th>
+                            </tr>
+                        </thread>
+                    </table>
+                </div>
 </body>
 </html>
