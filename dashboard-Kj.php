@@ -8,6 +8,17 @@ $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) {
     die("tidak terhubung");
 }
+
+$nomor_surat = "";
+$nama = "";
+$tempat_lahir = "";
+$tanggal_lahir = "";
+$jenis_kelamin = "";
+$agama = "";
+$pekerjaan = "";
+$sukses = "";
+$error = "    ";
+
 ?>
 
 <!DOCTYPE html>
@@ -37,15 +48,48 @@ if (!$koneksi) {
                     <table class="table">
                         <thread>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Tempat Lahir</th>
-                            <th scope="col">Tanggal Lahir</th>
-                            <th scope="col">Jenis Kelamin</th>
-                            <th scope="col">Agama</th>
-                            <th scope="col">Pekerjaan</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Tempat Lahir</th>
+                                <th scope="col">Tanggal Lahir</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Agama</th>
+                                <th scope="col">Pekerjaan</th>
                             </tr>
-                            
+                            <tbody>
+                                <?php
+                                $sql2 = "SELECT * FROM surat_rekomendasijorong";
+                                $q2 = mysqli_query($koneksi,$sql2) or die (mysqli_error($koneksi));
+                                $urut = 1;
+
+                                while ($r2 = mysqli_fetch_array($q2)){
+                                    $nomor_surat = $r2['nomor_surat'];
+                                    $nama = $r2['nama'];
+                                    $tempat_lahir = $r2['tempat_lahir'];
+                                    $tanggal_lahir = $r2['tanggal_lahir'];
+                                    $jenis_kelamin = $r2['jenis_kelamin'];
+                                    $agama = $r2['agama'];
+                                    $pekerjaan = $r2['pekerjaan'];
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $urut++?></th>
+                                        <td scope="row"><?php echo $nama?></td>
+                                        <td scope="row"><?php echo $tempat_lahir?></td>
+                                        <td scope="row"><?php echo $tanggal_lahir?></td>
+                                        <td scope="row"><?php echo $jenis_kelamin?></td>
+                                        <td scope="row"><?php echo $agama?></td>
+                                        <td scope="row"><?php echo $pekerjaan?></td>
+                                        <td scope="row">
+                                            <a href="edit.php?op=edit&id=<?php echo $nomor_surat?>"><button type="button" class="btn btn-warning">Input</button></a>
+
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            
+                                        </td>
+                                    </tr>
+                                    <?php           
+                                }
+                                ?>
+                            </tbody>
                         </thread>
                     </table>
                 </div>
