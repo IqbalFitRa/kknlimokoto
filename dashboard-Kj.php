@@ -45,6 +45,7 @@ if (!$koneksi) {
                             <th scope="col">Agama</th>
                             <th scope="col">Pekerjaan</th>
                             </tr>
+                            
                         </thread>
                     </table>
                 </div>
