@@ -67,15 +67,6 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="card-body">
                 <?php
-                if ($error) {
-                ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $error ?>
-                    </div>
-                <?php
-                }
-                ?>
-                <?php
                 if ($sukses) {
                 ?>
                     <div class="alert alert-success" role="alert">

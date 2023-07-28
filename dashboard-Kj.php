@@ -9,7 +9,7 @@ if (!$koneksi) {
     die("tidak terhubung");
 }
 
-$nomor_surat = "";
+$id_warga = "";
 $nama = "";
 $tempat_lahir = "";
 $tanggal_lahir = "";
@@ -63,7 +63,7 @@ $error = "    ";
                                 $urut = 1;
 
                                 while ($r2 = mysqli_fetch_array($q2)){
-                                    $nomor_surat = $r2['nomor_surat'];
+                                    $id_warga = $r2['id_warga'];
                                     $nama = $r2['nama'];
                                     $tempat_lahir = $r2['tempat_lahir'];
                                     $tanggal_lahir = $r2['tanggal_lahir'];
@@ -80,7 +80,7 @@ $error = "    ";
                                         <td scope="row"><?php echo $agama?></td>
                                         <td scope="row"><?php echo $pekerjaan?></td>
                                         <td scope="row">
-                                            <a href="edit.php?op=edit&id=<?php echo $nomor_surat?>"><button type="button" class="btn btn-warning">Input</button></a>
+                                            <a href="edit.php?op=edit&id=<?php echo $id_warga?>"><button type="button" class="btn btn-warning">Input</button></a>
 
                                             <button type="button" class="btn btn-danger">Delete</button>
                                             

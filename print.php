@@ -1,4 +1,55 @@
 <?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "kkn-limokoto";
+
+$koneksi = mysqli_connect($host, $user, $pass, $db);
+if (!$koneksi) {
+    die("tidak terhubung");
+}
+$nomor = "";
+$suratdibutuhkan1 = "";
+$suratdibutuhkan2 = "";
+$suratdibutuhkan3 = "";
+$suratdibutuhkan4 = "";
+$keperluan = "";
+$pbb = "";
+$nama = "";
+$tempat_lahir = "";
+$tanggal_lahir = "";
+$jenis_kelamin = "";
+$agama = "";
+$pekerjaan = "";
+
+if (isset($_POST['submit'])) {
+    $nomor = $_POST['nomor'];
+    $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
+    $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
+    $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
+    $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
+    $keperluan = $_POST['keperluan'];
+    $pbb = $_POST['pbb'];
+   
+
+     if ($nomor && $keperluan && $pbb) {
+     $sql1 ="SELECT surat_rekomendasijorong.id_warga FROM surat_rekomendasijorong INNER JOIN kepalajorong ON surat_rekomendasijorong.id_warga=kepalajorong.id;";
+     $q1 = mysqli_query($koneksi,$sql1);
+     $sql2 = "INSERT INTO kepalajorong(nomor,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan,pbb) 
+         values ('$nomor','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan','$pbb')";
+         $q2 = mysqli_query($koneksi, $sql2);
+         if ($q2) {
+             $sukses = "input berhasil";
+         } else {
+
+             $error = "gagal";
+         }
+     } 
+
+}
+
+?>
+<?php
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -16,7 +67,7 @@ $html = '
     <pre style ="padding-bottom: -10px; padding-left: 50px; font-family:Times New Roman;" >Nama                                     : <strong>ANGGI KURNIAWAN</strong></pre>
     <pre style ="font-family:Times New Roman;padding-left: 50px; padding-bottom: 0px;" >Jabatan                                  : <strong>KEPALA JORONG KOTO PANJANG</strong></pre>
     <pre style ="font-family:Times New Roman;padding-bottom: 0px;" >Dengan ini menerangkan bahwa	 :</pre>
-    <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Nama                                     : $nama</pre>
+    <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Nama                                     : </pre>
     <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Tempat  Lahir                        : $tmptlhr</pre>
     <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Tanggal Lahir                        : $tnggllhr</pre>
     <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Jenis Kelamin                         : $gender</pre>
@@ -49,3 +100,4 @@ $html = '
 $mpdf->WriteHTML($html);
 
 $mpdf->Output('Surat-Rekomendasi.pdf', \Mpdf\Output\Destination::INLINE);
+?>
