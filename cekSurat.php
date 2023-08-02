@@ -9,42 +9,25 @@ if (!$koneksi) {
     die("tidak terhubung");
 }
 
-$id_warga = "";
+$id_surat = "";
 $nama = "";
 $tempat_lahir = "";
 $tanggal_lahir = "";
 $jenis_kelamin = "";
 $agama = "";
 $pekerjaan = "";
+$nomor = "";
+$suratdibutuhkan1 = "";
+$suratdibutuhkan2 = "";
+$suratdibutuhkan3 = "";
+$suratdibutuhkan4 = "";
+$keperluan = "";
+$pbb = "";
+$ttd = "";
+
 $sukses = "";
 $error = "    ";
 
-if (isset($_GET['op'])){
-    $op = $_GET['op'];
-}else{
-    $op = ""; 
-}
-
-if($op == "delete"){
-    $id_warga = $_GET['id_warga'];
-    $sql3 = "DELETE FROM kepalajorong WHERE id_warga = '$id_warga'";
-    $q3 = mysqli_query($koneksi,$sql3);
-    if($q3){
-        $sukses = "Berhasil";
-    } else {
-        $error = "Gagal";
-    }
-}
-
-if (isset($_POST['submit'])) {
-    $nomor = $_POST['nomor'];
-    $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
-    $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
-    $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
-    $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
-    $keperluan = $_POST['keperluan'];
-    $pbb = $_POST['pbb'];
-}
 
 ?>
 
@@ -56,9 +39,7 @@ if (isset($_POST['submit'])) {
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
-        .mx-auto {
-            width: 800px;
-        }
+        
 
         .card {
             margin-top: 10px;
@@ -84,7 +65,7 @@ if (isset($_POST['submit'])) {
   </nav>
 
     <div class="mx-auto">
-            <div class="card">
+
                 <div class="card-header">
                     List Permintaan Rekomendasi
                 </div>
@@ -99,21 +80,45 @@ if (isset($_POST['submit'])) {
                                 <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">Agama</th>
                                 <th scope="col">Pekerjaan</th>
+
+                                <th scope="col">Nomor Surat</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Keperluan</th>
+                                <th scope="col">PBB</th>
+                                <th scope="col">Tanda Tangan</th>
+
                             </tr>
                             <tbody>
                                 <?php
-                                $sql2 = "SELECT * FROM surat_rekomendasijorong ORDER BY id_warga DESC";
+                                $sql2 = 
+                                "SELECT surat_rekomendasijorong.nama,surat_rekomendasijorong.tempat_lahir,surat_rekomendasijorong.tanggal_lahir,surat_rekomendasijorong.jenis_kelamin,surat_rekomendasijorong.agama,surat_rekomendasijorong.pekerjaan,
+                                 kepalajorong.suratdibutuhkan1,kepalajorong.suratdibutuhkan2,kepalajorong.suratdibutuhkan3,kepalajorong.suratdibutuhkan4,kepalajorong.keperluan,kepalajorong.pbb,kepalajorong.nomor,kepalajorong.ttd
+                                FROM surat_rekomendasijorong 
+                                CROSS JOIN kepalajorong 
+                                ORDER BY id_surat DESC";
                                 $q2 = mysqli_query($koneksi,$sql2) or die (mysqli_error($koneksi));
                                 $urut = 1;
 
                                 while ($r2 = mysqli_fetch_array($q2)){
-                                    $id_warga = $r2['id_warga'];
                                     $nama = $r2['nama'];
                                     $tempat_lahir = $r2['tempat_lahir'];
                                     $tanggal_lahir = $r2['tanggal_lahir'];
                                     $jenis_kelamin = $r2['jenis_kelamin'];
                                     $agama = $r2['agama'];
                                     $pekerjaan = $r2['pekerjaan'];
+
+                                    $nomor = $r2['nomor'];
+                                    $suratdibutuhkan1 = $r2 ['suratdibutuhkan1'];
+                                    $suratdibutuhkan2 = $r2 ['suratdibutuhkan2'];
+                                    $suratdibutuhkan3 = $r2 ['suratdibutuhkan3'];
+                                    $suratdibutuhkan4 = $r2 ['suratdibutuhkan4'];
+                                    $keperluan = $r2 ['keperluan'];
+                                    $pbb = $r2 ['pbb'];
+                                    $ttd = $r2 ['ttd'];
+
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $urut++?></th>
@@ -123,9 +128,18 @@ if (isset($_POST['submit'])) {
                                         <td scope="row"><?php echo $jenis_kelamin?></td>
                                         <td scope="row"><?php echo $agama?></td>
                                         <td scope="row"><?php echo $pekerjaan?></td>
+                                        <td scope="row"><?php echo $nomor?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan1?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan2?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan3?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan4?></td>
+                                        <td scope="row"><?php echo $keperluan?></td>
+                                        <td scope="row"><?php echo $pbb?></td>
+                                        <td scope="row"><?php echo $ttd ?></td>
+
                                         <td scope="row">
-                                            <a href="edit.php?op=edit&id_warga=<?php echo $id_warga?>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                            <a href="dashboard-Kj.php?op=delete&id_warga=<?php echo $id_warga?>" onclick="return confirm('Delete?')"><button type="button" class="btn btn-danger">Delete</button></a>
+                                            
+                                            
                                         </td>
                                     </tr>
                                     <?php           
@@ -134,7 +148,6 @@ if (isset($_POST['submit'])) {
                             </tbody>
                         </thread>
                     </table>
-                    <a href="cekSurat.php"><button type="button" class="btn btn-warning">Cek Data</button></a>
-                </div>
+          
 </body>
 </html>

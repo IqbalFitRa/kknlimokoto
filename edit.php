@@ -15,10 +15,22 @@ $suratdibutuhkan3 = "";
 $suratdibutuhkan4 = "";
 $keperluan = "";
 $pbb = "";
+$ttd = "";
 $sukses = "";
 $error = "    ";
 
-if (isset($_POST['simpan'])) {
+if (isset($_GET['op'])){
+    $op = $_GET['op'];
+}else{
+    $op = ""; 
+}
+
+if($op == 'edit'){
+    $id_warga = $_GET['id_warga'];
+        
+}
+
+if (isset($_POST['submit'])) {
     $nomor = $_POST['nomor'];
     $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
     $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
@@ -26,20 +38,21 @@ if (isset($_POST['simpan'])) {
     $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
     $keperluan = $_POST['keperluan'];
     $pbb = $_POST['pbb'];
-   
+    $ttd = $_POST['ttd'];
 
-     if ($nomor && $keperluan && $pbb) {
-     $sql2 = "INSERT INTO kepalajorong(nomor,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan,pbb,id_warga) SELECT kepalajorong.id_warga FROM surat_rekomendasijorong INNER JOIN kepalajorong ON kepalajorong.id_warga = surat_rekomendasijorong.id_warga 
-        values ('$nomor','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan','$pbb')";
-         $q2 = mysqli_query($koneksi, $sql2);
-         if ($q2) {
-             $sukses = "input berhasil";
-         } else {
-
-             $error = "gagal";
-         }
-     } 
-
+    if ($nomor && $keperluan && $pbb) {
+        if($op == 'edit'){
+            $sql1 = "INSERT INTO kepalajorong(nomor,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan,pbb,id_warga,ttd)
+            values ('$nomor','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan','$pbb','$id_warga','$ttd')";
+            $q1 = mysqli_query($koneksi, $sql1);
+            if ($q1) {
+                $sukses = "Update berhasil";
+            } else {
+    
+                $error = "gagal";
+            }
+        }
+    } 
 }
 
 ?>
@@ -64,6 +77,23 @@ if (isset($_POST['simpan'])) {
 </head>
 
 <body>
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Web Permohonan Surat Rekomendasi Nagari Limo Koto</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="back.php">Back</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
     <div class="mx-auto">
         <div class="card">
             <div class="card-header">
@@ -112,6 +142,10 @@ if (isset($_POST['simpan'])) {
                     <div class="mb-3">
                         <label for="keperluan" class="form-label">Keperluan(wajib) :</label>
                         <input type="text" class="form-control" id="keperluan" name="keperluan" value="<?php echo $keperluan ?>" placeholder="Masukkan Keperluan" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ttd" class="form-label">Tanda Tangan(wajib) :</label>
+                        <input type="file" class="form-control" id="ttd" name="ttd" value="<?php echo $ttd ?>" placeholder="Masukkan Tanda Tangan" autocomplete="off" required>
                     </div>
                     <div class="col-12">
                         <input type="submit" name="submit" value="simpan" class="btn btn-primary">
