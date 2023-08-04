@@ -16,6 +16,11 @@ $agama = "";
 $pekerjaan = "";
 $sukses = "";
 $error = "    ";
+$suratdibutuhkan1 = "";
+$suratdibutuhkan2 = "";
+$suratdibutuhkan3 = "";
+$suratdibutuhkan4 = "";
+$keperluan = "";
 
 if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
@@ -24,10 +29,15 @@ if (isset($_POST['submit'])) {
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $agama = $_POST['agama'];
     $pekerjaan = $_POST['pekerjaan'];
+    $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
+    $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
+    $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
+    $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
+    $keperluan = $_POST['keperluan'];
 
-    if ($nama && $tempat_lahir && $tanggal_lahir && $jenis_kelamin && $agama && $pekerjaan) {
-        $sql1 = "insert into surat_rekomendasijorong(nama,tempat_lahir,tanggal_lahir,jenis_kelamin,agama,pekerjaan) 
-        values ('$nama','$tempat_lahir','$tanggal_lahir','$jenis_kelamin','$agama','$pekerjaan')";
+    if ($nama && $tempat_lahir && $tanggal_lahir && $jenis_kelamin && $agama && $pekerjaan && $keperluan) {
+        $sql1 = "insert into surat_rekomendasijorong(nama,tempat_lahir,tanggal_lahir,jenis_kelamin,agama,pekerjaan,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan) 
+        values ('$nama','$tempat_lahir','$tanggal_lahir','$jenis_kelamin','$agama','$pekerjaan','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan')";
         $q1 = mysqli_query($koneksi, $sql1);
         if ($q1) {
             $sukses = "input berhasil";
@@ -119,6 +129,54 @@ if (isset($_POST['submit'])) {
                     <div class="mb-3">
                         <label for="pekerjaan" class="form-label">Pekerjaan(wajib) :</label>
                         <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?php echo $pekerjaan ?>" placeholder="Masukkan pekerjaan" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="suratdibutuhkan1" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
+                        <select class="form-control" name="suratdibutuhkan1" id="suratdibutuhkan1">
+                            <option value="">Pilih Surat yang Dibutuhkan : </option>
+                            <option value="Surat Keterangan Usaha" <?php if ($suratdibutuhkan1 == "Surat Keterangan Usaha") echo "selected" ?>>Surat Keterangan Usaha</option>
+                            <option value="Surat Keterangan Tidak Mampu" <?php if ($suratdibutuhkan1 == "Surat Keterangan Tidak Mampu") echo "selected" ?>>Surat Keterangan Tidak Mampu</option>
+                            <option value="Surat Keterangan Domisili" <?php if ($suratdibutuhkan1 == "Surat Keterangan Domisili") echo "selected" ?>>Surat Keterangan Domisili</option>
+                            <option value="Surat Keterangan Kehilangan" <?php if ($suratdibutuhkan1 == "Surat Keterangan Kehilangan") echo "selected" ?>>Surat Keterangan Kehilangan</option>
+                            <option value="Surat Keterangan Pindah" <?php if ($suratdibutuhkan1 == "Surat Keterangan Pindah") echo "selected" ?>>Surat Keterangan Pindah</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="suratdibutuhkan2" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
+                        <select class="form-control" name="suratdibutuhkan2" id="suratdibutuhkan2">
+                            <option value="">Pilih Surat yang Dibutuhkan : </option>
+                            <option value="Surat Keterangan Usaha" <?php if ($suratdibutuhkan2 == "Surat Keterangan Usaha") echo "selected" ?>>Surat Keterangan Usaha</option>
+                            <option value="Surat Keterangan Tidak Mampu" <?php if ($suratdibutuhkan2 == "Surat Keterangan Tidak Mampu") echo "selected" ?>>Surat Keterangan Tidak Mampu</option>
+                            <option value="Surat Keterangan Domisili" <?php if ($suratdibutuhkan2 == "Surat Keterangan Domisili") echo "selected" ?>>Surat Keterangan Domisili</option>
+                            <option value="Surat Keterangan Kehilangan" <?php if ($suratdibutuhkan2 == "Surat Keterangan Kehilangan") echo "selected" ?>>Surat Keterangan Kehilangan</option>
+                            <option value="Surat Keterangan Pindah" <?php if ($suratdibutuhkan2 == "Surat Keterangan Pindah") echo "selected" ?>>Surat Keterangan Pindah</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="suratdibutuhkan3" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
+                        <select class="form-control" name="suratdibutuhkan3" id="suratdibutuhkan3">
+                            <option value="">Pilih Surat yang Dibutuhkan : </option>
+                            <option value="Surat Keterangan Usaha" <?php if ($suratdibutuhkan3 == "Surat Keterangan Usaha") echo "selected" ?>>Surat Keterangan Usaha</option>
+                            <option value="Surat Keterangan Tidak Mampu" <?php if ($suratdibutuhkan3 == "Surat Keterangan Tidak Mampu") echo "selected" ?>>Surat Keterangan Tidak Mampu</option>
+                            <option value="Surat Keterangan Domisili" <?php if ($suratdibutuhkan3 == "Surat Keterangan Domisili") echo "selected" ?>>Surat Keterangan Domisili</option>
+                            <option value="Surat Keterangan Kehilangan" <?php if ($suratdibutuhkan3 == "Surat Keterangan Kehilangan") echo "selected" ?>>Surat Keterangan Kehilangan</option>
+                            <option value="Surat Keterangan Pindah" <?php if ($suratdibutuhkan3 == "Surat Keterangan Pindah") echo "selected" ?>>Surat Keterangan Pindah</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="suratdibutuhkan4" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
+                        <select class="form-control" name="suratdibutuhkan4" id="suratdibutuhkan4">
+                            <option value="">Pilih Surat yang Dibutuhkan : </option>
+                            <option value="Surat Keterangan Usaha" <?php if ($suratdibutuhkan4 == "Surat Keterangan Usaha") echo "selected" ?>>Surat Keterangan Usaha</option>
+                            <option value="Surat Keterangan Tidak Mampu" <?php if ($suratdibutuhkan4 == "Surat Keterangan Tidak Mampu") echo "selected" ?>>Surat Keterangan Tidak Mampu</option>
+                            <option value="Surat Keterangan Domisili" <?php if ($suratdibutuhkan4 == "Surat Keterangan Domisili") echo "selected" ?>>Surat Keterangan Domisili</option>
+                            <option value="Surat Keterangan Kehilangan" <?php if ($suratdibutuhkan4 == "Surat Keterangan Kehilangan") echo "selected" ?>>Surat Keterangan Kehilangan</option>
+                            <option value="Surat Keterangan Pindah" <?php if ($suratdibutuhkan4 == "Surat Keterangan Pindah") echo "selected" ?>>Surat Keterangan Pindah</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keperluan" class="form-label">Keperluan(wajib) :</label>
+                        <input type="text" class="form-control" id="keperluan" name="keperluan" value="<?php echo $keperluan ?>" placeholder="Masukkan Keperluan" autocomplete="off" required>
                     </div>
                     <div class="col-12">
                         <input type="submit" name="submit" value="simpan" class="btn btn-primary">

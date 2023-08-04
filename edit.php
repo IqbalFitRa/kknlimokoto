@@ -9,11 +9,6 @@ if (!$koneksi) {
     die("tidak terhubung");
 }
 $nomor = "";
-$suratdibutuhkan1 = "";
-$suratdibutuhkan2 = "";
-$suratdibutuhkan3 = "";
-$suratdibutuhkan4 = "";
-$keperluan = "";
 $pbb = "";
 $ttd = "";
 $sukses = "";
@@ -32,18 +27,13 @@ if($op == 'edit'){
 
 if (isset($_POST['submit'])) {
     $nomor = $_POST['nomor'];
-    $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
-    $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
-    $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
-    $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
-    $keperluan = $_POST['keperluan'];
     $pbb = $_POST['pbb'];
     $ttd = $_POST['ttd'];
 
-    if ($nomor && $keperluan && $pbb) {
+    if ($nomor && $pbb) {
         if($op == 'edit'){
-            $sql1 = "INSERT INTO kepalajorong(nomor,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan,pbb,id_warga,ttd)
-            values ('$nomor','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan','$pbb','$id_warga','$ttd')";
+            $sql1 = "INSERT INTO kepalajorong(nomor,pbb,id_warga,ttd)
+            values ('$nomor','$pbb','$id_warga','$ttd')";
             $q1 = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses = "Update berhasil";
@@ -110,25 +100,9 @@ if (isset($_POST['submit'])) {
                 }
                 ?>
                 <form action="" method="POST">
-                    <div class="mb-3">
+                <div class="mb-3">
                         <label for="nomor" class="form-label">nomor(wajib) :</label>
                         <input type="text" class="form-control" id="nomor" name="nomor" value="<?php echo $nomor ?>" placeholder="Masukkan Nomor" autocomplete="off" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="suratdibutuhkan1" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
-                        <input type="text" class="form-control" id="suratdibutuhkan1" name="suratdibutuhkan1" value="<?php echo $suratdibutuhkan1 ?>" placeholder="Masukkan Surat yang Dibutuhkan " autocomplete="off">
-                    </div>
-                    <div class="mb-3">
-                        <label for="suratdibutuhkan2" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
-                        <input type="text" class="form-control" id="suratdibutuhkan2" name="suratdibutuhkan2" value="<?php echo $suratdibutuhkan2 ?>" placeholder="Masukkan Surat yang Dibutuhkan " autocomplete="off">
-                    </div>
-                    <div class="mb-3">
-                        <label for="suratdibutuhkan3" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
-                        <input type="text" class="form-control" id="suratdibutuhkan3" name="suratdibutuhkan3" value="<?php echo $suratdibutuhkan3 ?>" placeholder="Masukkan Surat yang Dibutuhkan " autocomplete="off">
-                    </div>
-                    <div class="mb-3">
-                        <label for="suratdibutuhkan4" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>
-                        <input type="text" class="form-control" id="suratdibutuhkan4" name="suratdibutuhkan4" value="<?php echo $suratdibutuhkan4 ?>" placeholder="Masukkan Surat yang Dibutuhkan " autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="pbb" class="form-label">Jenis PBB :</label>
@@ -138,10 +112,6 @@ if (isset($_POST['submit'])) {
                             <option value="belumbayar" <?php if ($pbb == "belumbayar") echo "selected" ?>>Belum Bayar</option>
                             <option value="bebaspajak" <?php if ($pbb == "bebaspajak") echo "selected" ?>>Bebas Pajak</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="keperluan" class="form-label">Keperluan(wajib) :</label>
-                        <input type="text" class="form-control" id="keperluan" name="keperluan" value="<?php echo $keperluan ?>" placeholder="Masukkan Keperluan" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
                         <label for="ttd" class="form-label">Tanda Tangan(wajib) :</label>

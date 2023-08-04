@@ -16,6 +16,11 @@ $tanggal_lahir = "";
 $jenis_kelamin = "";
 $agama = "";
 $pekerjaan = "";
+$suratdibutuhkan1 = "";
+$suratdibutuhkan2 = "";
+$suratdibutuhkan3 = "";
+$suratdibutuhkan4 = "";
+$keperluan = "";
 $sukses = "";
 $error = "    ";
 
@@ -36,16 +41,6 @@ if($op == "delete"){
     }
 }
 
-if (isset($_POST['submit'])) {
-    $nomor = $_POST['nomor'];
-    $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
-    $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
-    $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
-    $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
-    $keperluan = $_POST['keperluan'];
-    $pbb = $_POST['pbb'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +52,7 @@ if (isset($_POST['submit'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
         .mx-auto {
-            width: 800px;
+            width: 100%;
         }
 
         .card {
@@ -99,6 +94,11 @@ if (isset($_POST['submit'])) {
                                 <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">Agama</th>
                                 <th scope="col">Pekerjaan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Surat Dibutuhkan</th>
+                                <th scope="col">Keperluan</th>
                             </tr>
                             <tbody>
                                 <?php
@@ -114,6 +114,11 @@ if (isset($_POST['submit'])) {
                                     $jenis_kelamin = $r2['jenis_kelamin'];
                                     $agama = $r2['agama'];
                                     $pekerjaan = $r2['pekerjaan'];
+                                    $suratdibutuhkan1 = $r2['suratdibutuhkan1'];
+                                    $suratdibutuhkan2 = $r2['suratdibutuhkan2'];
+                                    $suratdibutuhkan3 = $r2['suratdibutuhkan3'];
+                                    $suratdibutuhkan4 = $r2['suratdibutuhkan4'];
+                                    $keperluan = $r2['keperluan'];
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $urut++?></th>
@@ -123,8 +128,15 @@ if (isset($_POST['submit'])) {
                                         <td scope="row"><?php echo $jenis_kelamin?></td>
                                         <td scope="row"><?php echo $agama?></td>
                                         <td scope="row"><?php echo $pekerjaan?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan1?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan2?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan3?></td>
+                                        <td scope="row"><?php echo $suratdibutuhkan4?></td>
+                                        <td scope="row"><?php echo $keperluan?></td>
                                         <td scope="row">
                                             <a href="edit.php?op=edit&id_warga=<?php echo $id_warga?>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                        </td>
+                                        <td scope="row">
                                             <a href="dashboard-Kj.php?op=delete&id_warga=<?php echo $id_warga?>" onclick="return confirm('Delete?')"><button type="button" class="btn btn-danger">Delete</button></a>
                                         </td>
                                     </tr>
