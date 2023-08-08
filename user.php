@@ -16,6 +16,8 @@ $agama = "";
 $pekerjaan = "";
 $sukses = "";
 $error = "    ";
+$jorong = "";
+$tanggal = "";
 $suratdibutuhkan1 = "";
 $suratdibutuhkan2 = "";
 $suratdibutuhkan3 = "";
@@ -29,15 +31,17 @@ if (isset($_POST['submit'])) {
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $agama = $_POST['agama'];
     $pekerjaan = $_POST['pekerjaan'];
+    $tanggal = $_POST['tanggal'];
+    $jorong = $_POST['jorong'];
     $suratdibutuhkan1 = $_POST['suratdibutuhkan1'];
     $suratdibutuhkan2 = $_POST['suratdibutuhkan2'];
     $suratdibutuhkan3 = $_POST['suratdibutuhkan3'];
     $suratdibutuhkan4 = $_POST['suratdibutuhkan4'];
     $keperluan = $_POST['keperluan'];
 
-    if ($nama && $tempat_lahir && $tanggal_lahir && $jenis_kelamin && $agama && $pekerjaan && $keperluan) {
-        $sql1 = "insert into surat_rekomendasijorong(nama,tempat_lahir,tanggal_lahir,jenis_kelamin,agama,pekerjaan,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan) 
-        values ('$nama','$tempat_lahir','$tanggal_lahir','$jenis_kelamin','$agama','$pekerjaan','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan')";
+    if ($nama && $tempat_lahir && $tanggal_lahir && $jenis_kelamin && $agama && $jorong && $pekerjaan && $keperluan && $tanggal) {
+        $sql1 = "insert into surat_rekomendasijorong(nama,tempat_lahir,tanggal_lahir,jenis_kelamin,agama,pekerjaan,jorong,suratdibutuhkan1,suratdibutuhkan2,suratdibutuhkan3,suratdibutuhkan4,keperluan,tanggal) 
+        values ('$nama','$tempat_lahir','$tanggal_lahir','$jenis_kelamin','$agama','$pekerjaan','$jorong','$suratdibutuhkan1','$suratdibutuhkan2','$suratdibutuhkan3','$suratdibutuhkan4','$keperluan','$tanggal')";
         $q1 = mysqli_query($koneksi, $sql1);
         if ($q1) {
             $sukses = "input berhasil";
@@ -118,8 +122,8 @@ if (isset($_POST['submit'])) {
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin(wajib) :</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" required>
                             <option value="">Pilih Jenis Kelamin : </option>
-                            <option value="pria" <?php if ($jenis_kelamin == "pria") echo "selected" ?>>Pria</option>
-                            <option value="wanita" <?php if ($jenis_kelamin == "wanita") echo "selected" ?>>Wanita</option>
+                            <option value="Pria" <?php if ($jenis_kelamin == "Pria") echo "selected" ?>>Pria</option>
+                            <option value="Wanita" <?php if ($jenis_kelamin == "Wanita") echo "selected" ?>>Wanita</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -127,8 +131,27 @@ if (isset($_POST['submit'])) {
                         <input type="text" class="form-control" id="agama" name="agama" value="<?php echo $agama ?>" placeholder="Masukkan agama" autocomplete="off" required>
                     </div>
                     <div class="mb-3">
+                        <label for="tanggal" class="form-label">Tanggal(wajib) :</label>
+                        <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?php echo $tanggal ?>" placeholder="Masukkan tanggal" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="pekerjaan" class="form-label">Pekerjaan(wajib) :</label>
                         <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?php echo $pekerjaan ?>" placeholder="Masukkan pekerjaan" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jorong" class="form-label">Jorong (wajib) :</label>
+                        <select class="form-control" name="jorong" id="jorong" required>
+                            <option value="">Pilih Jorong : </option>
+                            <option value="Koto Panjang" <?php if ($jorong == "Koto Panjang") echo "selected" ?>>Koto Panjang</option>
+                            <option value="Aur Gading" <?php if ($jorong == "Aur Gading") echo "selected" ?>>Aur Gading</option>
+                            <option value="Tanjung Ampalu" <?php if ($jorong == "Tanjung Ampalu") echo "selected" ?>>Tanjung Ampalu</option>
+                            <option value="Pasar" <?php if ($jorong == "Pasar") echo "selected" ?>>Pasar</option>
+                            <option value="Solok Badak" <?php if ($jorong == "Solok Badak") echo "selected" ?>>Solok Badak</option>
+                            <option value="Batu Balang" <?php if ($jorong == "Batu Balang") echo "selected" ?>>Batu Balang</option>
+                            <option value="Batu Gandang" <?php if ($jorong == "Batu Gandang") echo "selected" ?>>Batu Gandang</option>
+                            <option value="Taratak Malintang" <?php if ($jorong == "Taratak Malintang") echo "selected" ?>>Taratak Malintang</option>
+                            <option value="Mangkudu Kodok" <?php if ($jorong == "Mangkudu Kodok") echo "selected" ?>>Mangkudu Kodok</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="suratdibutuhkan1" class="form-label">Surat yang Dibutuhkan (Opsional) :</label>

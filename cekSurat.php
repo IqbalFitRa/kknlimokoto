@@ -28,6 +28,15 @@ $ttd = "";
 $sukses = "";
 $error = "    ";
 
+if (isset($_GET['op'])){
+  $op = $_GET['op'];
+}else{
+  $op = ""; 
+}
+
+if($op == 'print'){
+  $id_surat = $_GET['id_surat'];
+}
 
 ?>
 
@@ -39,8 +48,6 @@ $error = "    ";
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
-        
-
         .card {
             margin-top: 10px;
         }
@@ -80,7 +87,6 @@ $error = "    ";
                                 <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">Agama</th>
                                 <th scope="col">Pekerjaan</th>
-
                                 <th scope="col">Nomor Surat</th>
                                 <th scope="col">Surat Dibutuhkan</th>
                                 <th scope="col">Surat Dibutuhkan</th>
@@ -95,21 +101,21 @@ $error = "    ";
                                 <?php
                                 $sql2 = 
                                 "SELECT surat_rekomendasijorong.nama,surat_rekomendasijorong.tempat_lahir,surat_rekomendasijorong.tanggal_lahir,surat_rekomendasijorong.jenis_kelamin,surat_rekomendasijorong.agama,surat_rekomendasijorong.pekerjaan,
-                                 kepalajorong.suratdibutuhkan1,kepalajorong.suratdibutuhkan2,kepalajorong.suratdibutuhkan3,kepalajorong.suratdibutuhkan4,kepalajorong.keperluan,kepalajorong.pbb,kepalajorong.nomor,kepalajorong.ttd
+                                 surat_rekomendasijorong.suratdibutuhkan1,surat_rekomendasijorong.suratdibutuhkan2,surat_rekomendasijorong.suratdibutuhkan3,surat_rekomendasijorong.suratdibutuhkan4,surat_rekomendasijorong.keperluan,kepalajorong2.pbb,kepalajorong2.nomor,kepalajorong2.ttd
                                 FROM surat_rekomendasijorong 
-                                CROSS JOIN kepalajorong 
+                                CROSS JOIN kepalajorong2 ON kepalajorong2.id_warga = surat_rekomendasijorong.id_warga 
                                 ORDER BY id_surat DESC";
                                 $q2 = mysqli_query($koneksi,$sql2);
                                 $urut = 1;
-
+                                
                                 while ($r2 = mysqli_fetch_array($q2)){
+                                  echo $r2['nama'];
                                     $nama = $r2['nama'];
                                     $tempat_lahir = $r2['tempat_lahir'];
                                     $tanggal_lahir = $r2['tanggal_lahir'];
                                     $jenis_kelamin = $r2['jenis_kelamin'];
                                     $agama = $r2['agama'];
                                     $pekerjaan = $r2['pekerjaan'];
-
                                     $nomor = $r2['nomor'];
                                     $suratdibutuhkan1 = $r2 ['suratdibutuhkan1'];
                                     $suratdibutuhkan2 = $r2 ['suratdibutuhkan2'];
@@ -136,8 +142,7 @@ $error = "    ";
                                         <td scope="row"><?php echo $pbb?></td>
                                         <td scope="row"><?php echo $ttd ?></td>
                                         <td scope="row">
-                                            <a href="print.php?op=edit&id_surat=<?php echo $id_surat?>"><button type="button" class="btn btn-warning">Print</button></a>
-                                            <a href="delete.php?op=delete&id_surat=<?php echo $id_surat?>" onclick="return confirm('Delete?')"><button type="button" class="btn btn-danger">Delete</button></a>
+                                            <a href="print.php?op=print&nomor_surat=<?php echo $nomor?>"><button type="button" class="btn btn-warning">Print</button></a>
                                         </td>
                                     </tr>
                                   <?php           

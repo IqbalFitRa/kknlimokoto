@@ -30,16 +30,6 @@ if (isset($_GET['op'])){
     $op = ""; 
 }
 
-if($op == "delete"){
-    $id_warga = $_GET['id_warga'];
-    $sql3 = "DELETE FROM kepalajorong WHERE id_warga = '$id_warga'";
-    $q3 = mysqli_query($koneksi,$sql3);
-    if($q3){
-        $sukses = "Berhasil";
-    } else {
-        $error = "Gagal";
-    }
-}
 
 ?>
 
@@ -102,7 +92,10 @@ if($op == "delete"){
                             </tr>
                             <tbody>
                                 <?php
-                                $sql2 = "SELECT * FROM surat_rekomendasijorong ORDER BY id_warga DESC";
+                                $sql2 = "SELECT * FROM surat_rekomendasijorong 
+                                JOIN user
+                                ON surat_rekomendasijorong.jorong = user.jorong
+                                ORDER BY id_warga DESC";
                                 $q2 = mysqli_query($koneksi,$sql2) or die (mysqli_error($koneksi));
                                 $urut = 1;
 

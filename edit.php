@@ -9,40 +9,42 @@ if (!$koneksi) {
     die("tidak terhubung");
 }
 $nomor = "";
+
 $pbb = "";
 $ttd = "";
 $sukses = "";
+$tahunsurat = "";
 $error = "    ";
 
-if (isset($_GET['op'])){
+if (isset($_GET['op'])) {
     $op = $_GET['op'];
-}else{
-    $op = ""; 
+} else {
+    $op = "";
 }
 
-if($op == 'edit'){
+if ($op == 'edit') {
     $id_warga = $_GET['id_warga'];
-        
 }
 
 if (isset($_POST['submit'])) {
     $nomor = $_POST['nomor'];
     $pbb = $_POST['pbb'];
     $ttd = $_POST['ttd'];
+    $tahunsurat = $_POST['tahunsurat'];
 
     if ($nomor && $pbb) {
-        if($op == 'edit'){
-            $sql1 = "INSERT INTO kepalajorong(nomor,pbb,id_warga,ttd)
-            values ('$nomor','$pbb','$id_warga','$ttd')";
+        if ($op == 'edit') {
+            $sql1 = "INSERT INTO kepalajorong2(nomor,pbb,id_warga,ttd,tahunsurat)
+            values ('$nomor','$pbb','$id_warga','$ttd','$tahunsurat')";
             $q1 = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses = "Update berhasil";
             } else {
-    
+
                 $error = "gagal";
             }
         }
-    } 
+    }
 }
 
 ?>
@@ -67,22 +69,22 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Web Permohonan Surat Rekomendasi Nagari Limo Koto</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="back.php">Back</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Web Permohonan Surat Rekomendasi Nagari Limo Koto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="back.php">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="mx-auto">
         <div class="card">
@@ -100,7 +102,7 @@ if (isset($_POST['submit'])) {
                 }
                 ?>
                 <form action="" method="POST">
-                <div class="mb-3">
+                    <div class="mb-3">
                         <label for="nomor" class="form-label">nomor(wajib) :</label>
                         <input type="text" class="form-control" id="nomor" name="nomor" value="<?php echo $nomor ?>" placeholder="Masukkan Nomor" autocomplete="off" required>
                     </div>
@@ -108,14 +110,18 @@ if (isset($_POST['submit'])) {
                         <label for="pbb" class="form-label">Jenis PBB :</label>
                         <select class="form-control" name="pbb" id="pbb" required>
                             <option value="">Pilih Jenis pbb : </option>
-                            <option value="sudahbayar" <?php if ($pbb == "sudahbayar") echo "selected" ?>>Sudah Bayar</option>
-                            <option value="belumbayar" <?php if ($pbb == "belumbayar") echo "selected" ?>>Belum Bayar</option>
-                            <option value="bebaspajak" <?php if ($pbb == "bebaspajak") echo "selected" ?>>Bebas Pajak</option>
+                            <option value="Sudah Bayar" <?php if ($pbb == "Sudah Bayar") echo "selected" ?>>Sudah Bayar</option>
+                            <option value="Belum Bayar" <?php if ($pbb == "Belum Bayar") echo "selected" ?>>Belum Bayar</option>
+                            <option value="Bebas Pajak" <?php if ($pbb == "Bebas Pajak") echo "selected" ?>>Bebas Pajak</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="ttd" class="form-label">Tanda Tangan(wajib) :</label>
                         <input type="file" class="form-control" id="ttd" name="ttd" value="<?php echo $ttd ?>" placeholder="Masukkan Tanda Tangan" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tahunsurat" class="form-label">Tahun Surat(wajib) :</label>
+                        <input type="text" class="form-control" id="tahunsurat" name="tahunsurat" value="<?php echo $tahunsurat ?>" placeholder="Masukkan Tahun Surat" autocomplete="off" required>
                     </div>
                     <div class="col-12">
                         <input type="submit" name="submit" value="simpan" class="btn btn-primary">
@@ -124,4 +130,5 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
 </body>
+
 </html>
