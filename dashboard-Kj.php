@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 
 $host = "localhost";
 $user = "root";
@@ -133,9 +131,6 @@ if (isset($_GET['op'])){
                                         <td scope="row"><?php echo $keperluan?></td>
                                         <td scope="row">
                                             <a href="edit.php?op=edit&id_warga=<?php echo $id_warga?>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                        </td>
-                                        <td scope="row">
-                                            <a href="dashboard-Kj.php?op=delete&id_warga=<?php echo $id_warga?>" onclick="return confirm('Delete?')"><button type="button" class="btn btn-danger">Delete</button></a>
                                         </td>
                                     </tr>
                                     <?php           
