@@ -78,7 +78,7 @@ $html =
 
 <p style ="font-family:Times New Roman;padding-bottom: -10px;" >Yang bertanda tangan dibawah ini :</p>
     <pre style ="padding-bottom: -10px; padding-left: 50px; font-family:Times New Roman;" >Nama                                     : <strong>ANGGI KURNIAWAN</strong></pre>
-    <pre style ="font-family:Times New Roman;padding-left: 50px; padding-bottom: 0px;" >Jabatan                                  : <strong>KEPALA JORONG KOTO PANJANG</strong></pre>
+    <pre style ="font-family:Times New Roman;padding-left: 50px; padding-bottom: 0px;" >Jabatan                                  : <strong>Kepala Jorong '.$jorong.'</strong></pre>
     <pre style ="font-family:Times New Roman;padding-bottom: 0px;" >Dengan ini menerangkan bahwa	 :</pre>
     <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Nama                                     : '.$nama.' </pre>
     <pre style ="font-family:Times New Roman;padding-bottom: -10px; padding-left: 50px;" >Tempat  Lahir                        : '.$tempat_lahir.'</pre>
@@ -89,7 +89,7 @@ $html =
     <pre style ="font-family:Times New Roman;padding-bottom: 0px; padding-left: 50px;" >PBB                                        : '.$pbb.'</pre>
     
 
-    <p align="justify" style = "font-family:Times New Roman;">Nama tersebut diatas adalah benar-benar penduduk Jorong KOTO PANJANG Nagari Limo Koto, Kecamatan Koto VII, 
+    <p align="justify" style = "font-family:Times New Roman;">Nama tersebut diatas adalah benar-benar penduduk Jorong '.$jorong.', Nagari Limo Koto, Kecamatan Koto VII, 
     Kabupaten Sijunjung, selanjutnya yang bersangkutan akan mengurus Surat-surat Ke Kantor Wali Nagari Limo Koto antara lain:</p>
 
     <p style = "font-family:Times New Roman; padding-left: 50px;padding-bottom: -10px;">1. '.$suratdibutuhkan1.'</p>		
@@ -100,10 +100,10 @@ $html =
     <p style = "font-family:Times New Roman;">Untuk Keperluan  '.$keperluan.'</p>	
     <p align ="justify" style = "font-family:Times New Roman;">Demikianlah Rekomendasi ini diberikan kepada yang bersangkutan  untuk dipergunakan menurut semestinya, sesuai dengan peraturan yang berlaku</p>
     
-<p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">Diberikan di Koto Panjang </p>          
+<p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">Diberikan di '.$jorong.' </p>          
 <p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">Pada Tanggal: '.$tanggal.' </p>
 <p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">KEPALA JORONG</p>
-<p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">KOTO PANJANG</p>
+<p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;">'.$jorong.'</p>
 <p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;"></p>
 <p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;"></p>'.$ttd.'
 <p align = "right" style = "font-family:Times New Roman;padding-bottom: -10px;"></p>

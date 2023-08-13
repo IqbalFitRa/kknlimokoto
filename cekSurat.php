@@ -34,9 +34,6 @@ if (isset($_GET['op'])){
   $op = ""; 
 }
 
-if($op == 'print'){
-  $id_surat = $_GET['id_surat'];
-}
 
 ?>
 

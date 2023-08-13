@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -51,6 +54,8 @@ if (isset($_GET['op'])){
     </style>
 </head>
 <body>
+
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">

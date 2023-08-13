@@ -11,10 +11,6 @@ if ($conn->connect_error) {
     die('Koneksi database gagal: ' . $conn->connect_error);
 }
 
-
-
-
-
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -32,8 +28,6 @@ if (isset($_POST["login"])) {
     }
     $error = true;
 }
-
-$_SESSION["jorong"] = ""
 
 ?>
 <!DOCTYPE html>
